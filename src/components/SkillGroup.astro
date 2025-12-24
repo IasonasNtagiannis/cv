@@ -1,0 +1,58 @@
+---
+interface Props {
+  category: string;
+  skills: string[];
+}
+
+const { category, skills } = Astro.props;
+---
+
+<div class="skill-group">
+  <h3 class="category">{category}</h3>
+  <div class="skills">
+    {skills.map((skill) => <span class="skill">{skill}</span>)}
+  </div>
+</div>
+
+<style>
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .category {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent-secondary);
+  }
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .skill {
+    padding: var(--space-sm) var(--space-md);
+    background: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+  }
+
+  .skill:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+</style>
+

@@ -1,0 +1,91 @@
+---
+
+---
+
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+  <svg class="icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg class="icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    position: fixed;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(8px);
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    transition: all var(--transition-base);
+  }
+
+  .sun {
+    display: none;
+  }
+
+  .moon {
+    display: block;
+  }
+
+  :global([data-theme="light"]) .sun {
+    display: block;
+  }
+
+  :global([data-theme="light"]) .moon {
+    display: none;
+  }
+</style>
+
+<script>
+  function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    html.setAttribute('data-theme', initialTheme);
+    
+    toggle?.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+  
+  // Run on initial load
+  initTheme();
+  
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:after-swap', initTheme);
+</script>
+

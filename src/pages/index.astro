@@ -1,0 +1,180 @@
+---
+import Contact from "../components/Contact.astro";
+import EducationItem from "../components/EducationItem.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import Header from "../components/Header.astro";
+import Section from "../components/Section.astro";
+import SkillGroup from "../components/SkillGroup.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Iason Filippos Ntagiannis - CV">
+  <main>
+    <Header
+      name="Iason Filippos Ntagiannis"
+      title="Software Engineer"
+      summary="Experienced Software Engineer with frontend/product focus. Passionate about crafting minimalistic products with clean, responsive UI interactions that look and feel right to the user."
+    />
+
+    <Section title="Experience" id="experience">
+      <ExperienceItem
+        role="Software Engineer (Project-Based)"
+        company="Vesselfront · Remote"
+        period="Sept 2025 — Present"
+        description="Built and maintained frontend features for an AI-powered maritime product and the company website."
+        highlights={[
+          "Worked in a high-ownership startup environment with minimal role boundaries, taking responsibility beyond pure implementation",
+          "Actively contributed to design and product decisions, proposing UI/UX solutions that improved usability of complex, data-heavy workflows",
+        ]}
+      />
+
+      <ExperienceItem
+        role="Mid-level Frontend Developer"
+        company="Yodeck · Athens"
+        period="Jan 2025 — Present"
+        description="Maintained and extended a large-scale B2B SaaS frontend built with Backbone.js, used by thousands of active customers."
+        highlights={[
+          "Contributed to the gradual migration toward React, improving component reuse and long-term maintainability",
+          "Collaborated closely with product, backend, and design teams in a fast-growing startup",
+        ]}
+      />
+
+      <ExperienceItem
+        role="Frontend Developer"
+        company="PraxisEins · Remote"
+        period="Jun 2023 — Jan 2025"
+        description="Built a data-driven dashboard using Next.js, React, TypeScript and the Chart.js library."
+        highlights={[
+          "Implemented end-to-end testing with Playwright",
+          "Maintained consistent UI with TailwindCSS",
+        ]}
+      />
+
+      <ExperienceItem
+        role="Fullstack Developer"
+        company="Deloitte · Iraklion"
+        period="Sep 2022 — Jun 2023"
+        description="Developed solutions for the Ducati Motors salesforce team in an agile environment."
+        highlights={[
+          "Developed a multi-variable filtering tool",
+          "Improved PDF rendering and exporting features",
+        ]}
+      />
+
+      <ExperienceItem
+        role="Internship"
+        company="Conveos · Iraklion"
+        period="Jun 2022 — Aug 2022"
+        description="Developed a recipe application from concept to deployment."
+        highlights={[
+          "Translated Figma designs into production-ready front-end code",
+        ]}
+      />
+    </Section>
+
+    <Section title="Skills" id="skills">
+      <div class="skills-grid">
+        <SkillGroup
+          category="Frontend"
+          skills={[
+            "React",
+            "Next.js",
+            "TypeScript",
+            "JavaScript (ES6+)",
+            "Tailwind CSS",
+            "HTML",
+            "CSS",
+            "Playwright",
+          ]}
+        />
+        <SkillGroup
+          category="Backend"
+          skills={[
+            "Node.js",
+            "Express.js",
+            "REST APIs",
+            "SQL",
+            "Python",
+            "WebSockets",
+          ]}
+        />
+        <SkillGroup category="Tooling" skills={["Git", "Figma", "Jira"]} />
+        <SkillGroup
+          category="Languages"
+          skills={[
+            "English (Highly proficient)",
+            "Greek (Native)",
+            "German (Basic)",
+          ]}
+        />
+      </div>
+    </Section>
+
+    <Section title="Education" id="education">
+      <EducationItem
+        degree="MSc in Operational Research and Decision Making"
+        institution="Technical University of Crete"
+      />
+
+      <EducationItem
+        degree="BSc in Computer Science"
+        institution="University of Crete"
+      />
+    </Section>
+
+    <Section title="Contact" id="contact">
+      <Contact
+        items={[
+          {
+            label: "Email",
+            value: "iasonasntagiannis@gmail.com",
+            href: "mailto:iasonasntagiannis@gmail.com",
+          },
+          {
+            label: "Phone",
+            value: "+30 6978 400552",
+            href: "tel:+306978400552",
+          },
+          { label: "Location", value: "Athens, Greece" },
+          {
+            label: "LinkedIn",
+            value: "linkedin.com/in/iasonas-ntagiannis",
+            href: "https://www.linkedin.com/in/iasonas-ntagiannis/",
+          },
+          {
+            label: "GitHub",
+            value: "github.com/IasonasNtagiannis",
+            href: "https://github.com/IasonasNtagiannis",
+          },
+        ]}
+      />
+    </Section>
+
+    <footer class="footer">
+      <p>© 2025 Iason Filippos Ntagiannis</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .footer {
+    padding: var(--space-2xl) var(--container-padding);
+    text-align: center;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .footer p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+</style>

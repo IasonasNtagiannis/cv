@@ -1,0 +1,77 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<section class="section" id={id}>
+  <div class="section-inner">
+    <h2 class="section-title">
+      <span class="title-text">{title}</span>
+      <span class="title-line"></span>
+    </h2>
+    <div class="section-content">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--space-3xl) var(--container-padding);
+  }
+
+  .section:nth-child(even) {
+    background-color: var(--color-bg-elevated);
+  }
+
+  .section-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .title-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .title-text::before {
+    content: "//";
+    margin-right: var(--space-sm);
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--color-border) 0%,
+      transparent 100%
+    );
+  }
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+</style>
+

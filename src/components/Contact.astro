@@ -1,0 +1,84 @@
+---
+interface ContactItem {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+interface Props {
+  items: ContactItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="contact-grid">
+  {
+    items.map((item) => (
+      <div class="contact-item">
+        <span class="label">{item.label}</span>
+        {item.href ? (
+          <a href={item.href} class="value">
+            {item.value}
+          </a>
+        ) : (
+          <span class="value">{item.value}</span>
+        )}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: linear-gradient(
+      135deg,
+      var(--card-gradient-start),
+      var(--card-gradient-end)
+    );
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+  }
+
+  .contact-item:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px
+      color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .value {
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    word-break: break-word;
+  }
+
+  a.value {
+    color: var(--color-accent);
+  }
+
+  a.value:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+</style>
